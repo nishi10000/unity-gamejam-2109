@@ -466,6 +466,9 @@ MonoBehaviour:
   UkiGameObject: {fileID: 1030443567}
   TargetObject: {fileID: 1162657742}
   CastingParameter: {fileID: 11400000, guid: 57659be9a4a4d564cb9010ae98cc8e12, type: 2}
+  WaterLevelUpStart: 0
+  LevelSpeed: 1
+  RateMagnification: 1
 --- !u!4 &1282479001
 Transform:
   m_ObjectHideFlags: 0
@@ -498,7 +501,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1282479000}
         m_TargetAssemblyTypeName: WaterLevelControl, Assembly-CSharp
-        m_MethodName: StartupPoisition
+        m_MethodName: Setup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
