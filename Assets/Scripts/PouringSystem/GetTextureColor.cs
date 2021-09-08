@@ -27,7 +27,7 @@ public class GetTextureColor : MonoBehaviour
         //int height = Mathf.FloorToInt(sourceRect.height); 
         int height = Mathf.FloorToInt(sourceTex.height); //画像の高さ分必要なので。
 
-        Color[] pix = sourceTex.GetPixels(x, y, width, height);
+        Color[] pix = sourceTex.GetPixels(x, y, width, height);  //左下から取得する。
         //Texture2D destTex = new Texture2D(width, height);
         //destTex.SetPixels(pix);
         //destTex.Apply();
