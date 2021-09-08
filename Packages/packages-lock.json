@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.loophouse.scriptable-states": {
+      "version": "https://github.com/luisoliveiras/scriptable-states.git#v0.4.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "65787458dcbd7e25ef56caba501385f655003c20"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
