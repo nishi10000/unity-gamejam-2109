@@ -7,6 +7,10 @@ using UnityEngine;
 /// </summary>
 public class WaterLevelControl : MonoBehaviour
 {
+
+    [SerializeField]
+    CastingEvent OverflowCastingEvent = null;
+
     public GameObject UkiGameObject;  //水面の上面を示すオブジェクト
 
     public GameObject TargetObject;  //Ukiを置くオブジェクト
@@ -17,8 +21,8 @@ public class WaterLevelControl : MonoBehaviour
     private float TagetObjectLowerPos = 0;  //鋳型底面
     private float TagetObjectUpperPos = 0;　//鋳型上面
 
-    private int CastingLower = 0;  //鋳型の一番下を格納する。
-    private int CastingUpper = 0;  //鋳型の一番上を格納する。//要確認
+    private int CastingLower = 0;  //鋳型の一番下の配列を格納する。
+    private int CastingUpper = 0;  //鋳型の一番上の配列を格納する。//要確認
 
 
     //ターゲットのサイズを配列数で分割したものを格納する。1配列あたりの高さを算出。
@@ -29,10 +33,24 @@ public class WaterLevelControl : MonoBehaviour
 
     //水位が上がるベースの速度
     [SerializeField]
-    private float LevelSpeed = 5.0f;
+    private float LevelBaseSpeed = 1.0f;
 
+    //形状に対してどれほど大げさに上昇率を変えるかを格納。
     [SerializeField]
-    private float RateMagnification = 1.0f;  //形状に対してどれほど大げさに上昇率を変えるかを格納。
+    private float RateMagnification = 1.0f;  
+
+    //Lisnerによって、下記関数を呼び出す事で、水位を上げる。
+    public void WaterLevelUpStartEvent()
+    {
+        WaterLevelUpStart = true;
+        //Debug.Log("startEvent");
+    }
+    //Lisnerによって、下記関数を呼び出す事で、水位の上昇を止める。
+    public void WaterLevelUpStopEvent()
+    {
+        WaterLevelUpStart = false;
+        //Debug.Log("EndEvent");
+    }
 
 
     //鋳型形状確認後発火//CastingParameter入力エンド後に実行する。
@@ -82,9 +100,12 @@ public class WaterLevelControl : MonoBehaviour
 
         //CastingLowerに合わせて高さを足した場所にUkiを設置。
         TagetObjectLowerPos = TagetObjectLowerPos + ArrayPartHeight * CastingLower;
-
+        //SOに格納
+        CastingParameter.CastingLowerPosition = TagetObjectLowerPos;
         //鋳型上面を算出
         TagetObjectUpperPos = TagetObjectUpperPos - (ArrayPartHeight * (CastingParameter.CastingAlpha.Count - CastingUpper));
+        //SOに格納
+        CastingParameter.CastingUpperPosition = TagetObjectUpperPos;
     }
 
     //浮きを最初の位置に持ってくる。下から見たときに１以外になった初めての場所。
@@ -100,13 +121,13 @@ public class WaterLevelControl : MonoBehaviour
         if (WaterLevelUpStart)
         {
             WaterLevelUp();
+            WaterLevelCheck();
         }
-        //途中で、Onbuttonが止まると,得点判定。//それは別クラスか？
+        //途中で、止まると,得点判定。//それは別クラスか？
     }
 
     //スタートイベントを受けて動作開始。
     //鋳型上面に向けて、Ukiを移動させる。
-    //Ukiが上面を超えたら、NGイベント発火。
     void WaterLevelUp()
     {
         float Rate = 0;
@@ -128,7 +149,17 @@ public class WaterLevelControl : MonoBehaviour
         Rate = RateMagnification * Rate;
         //Debug.Log(Rate);
 
-        //その後TagetObjectUpperPosを超えると、NGイベント発火。
-        UkiGameObject.transform.position += new Vector3(0, LevelSpeed * Time.deltaTime * Rate, 0);
+        UkiGameObject.transform.position += new Vector3(0, LevelBaseSpeed * Time.deltaTime * Rate, 0);
+    }
+
+    //Ukiが鋳型上面を超えたかどうかを確認する。
+    //超えていたらイベント発火。
+    void WaterLevelCheck()
+    {
+        if(UkiGameObject.transform.position.y > TagetObjectUpperPos)
+        {
+            //イベント発火。
+            OverflowCastingEvent.Raise();
+        }
     }
 }
