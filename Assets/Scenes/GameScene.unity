@@ -305,6 +305,107 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &432735549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 432735552}
+  - component: {fileID: 432735551}
+  - component: {fileID: 432735550}
+  - component: {fileID: 432735553}
+  m_Layer: 0
+  m_Name: CastingController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &432735550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432735549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1268dd0cf0669bf4ebc50f7b6ad565b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: de61a33e2dd831d48856b84c17f86e30, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 432735551}
+        m_TargetAssemblyTypeName: CastingMoving, Assembly-CSharp
+        m_MethodName: CastingCreate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &432735551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432735549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9184c3bac58ff4b8b3ca312f667b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &432735552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432735549}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &432735553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432735549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1268dd0cf0669bf4ebc50f7b6ad565b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 7c24886dcbd3d8f4198a50e6b79158a5, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 432735551}
+        m_TargetAssemblyTypeName: CastingMoving, Assembly-CSharp
+        m_MethodName: CastingDelete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1112955028
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,6 +819,7 @@ GameObject:
   - component: {fileID: 2125895274}
   - component: {fileID: 2125895276}
   - component: {fileID: 2125895277}
+  - component: {fileID: 2125895278}
   m_Layer: 0
   m_Name: GameFSM
   m_TagString: Untagged
@@ -739,6 +841,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaterLevelUpStartEvent: {fileID: 11400000, guid: b177880ebdd9b4c45b55ff5fa76c867c, type: 2}
   WaterLevelUpStopEvent: {fileID: 11400000, guid: 4c92bdf6f53895e4194bdb74edb23032, type: 2}
+  CastingEntryEvent: {fileID: 11400000, guid: de61a33e2dd831d48856b84c17f86e30, type: 2}
+  CastingDeleteEvent: {fileID: 11400000, guid: 7c24886dcbd3d8f4198a50e6b79158a5, type: 2}
   CastingGameObjects:
   - {fileID: 2586978397937156366, guid: ffe21471dc260714b93a86d7b057fe67, type: 3}
   Round: 0
@@ -803,6 +907,34 @@ MonoBehaviour:
       - m_Target: {fileID: 2125895274}
         m_TargetAssemblyTypeName: GameFSM, Assembly-CSharp
         m_MethodName: ReciveUnTapEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2125895278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125895273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1268dd0cf0669bf4ebc50f7b6ad565b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 99000fd20fccef34caed8513df4c41d4, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2125895274}
+        m_TargetAssemblyTypeName: GameFSM, Assembly-CSharp
+        m_MethodName: ReciveOverflowCasingEvent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

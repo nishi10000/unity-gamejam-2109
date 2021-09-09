@@ -13,9 +13,14 @@ public class GameFSM : MonoBehaviour
     public CastingEvent WaterLevelUpStartEvent = null;
     public CastingEvent WaterLevelUpStopEvent = null;
 
-    //鋳型を格納する変数。TODO:この数だけ、ラウンドが行われる。
     [SerializeField]
-    private List<GameObject> CastingGameObjects = new List<GameObject>();
+    private CastingEvent CastingEntryEvent = null;
+
+    [SerializeField]
+    private CastingEvent CastingDeleteEvent = null;
+
+    //鋳型を格納する変数。TODO:この数だけ、ラウンドが行われる。//TODO:Scriptableオブジェクトに格納した方が使いやすそう。
+    public List<GameObject> CastingGameObjects = new List<GameObject>();
     public int Round = 0;  //ゲームのラウンドをカウントする。
 
     public enum StateEventId
@@ -103,14 +108,8 @@ public class GameFSM : MonoBehaviour
         protected override void Enter()
         {
             Debug.Log("nowMoldEntryState");
+            GameFSM.instance.CastingEntryEvent.Raise();
 
-            //GameObject obj = (GameObject)Resources.Load("Cube");
-            GameObject obj = GameFSM.instance.CastingGameObjects[0];//TODO:ここをランダムにしても面白かも。
-
-            // プレハブを元にオブジェクトを生成する
-            GameObject instance = (GameObject)Instantiate(obj,
-                                                          new Vector3(5.0f, 0.0f, 0.0f),
-                                                          Quaternion.identity);
         }
     }
     //上昇水位を止める。
@@ -127,13 +126,22 @@ public class GameFSM : MonoBehaviour
             GameFSM.instance.WaterLevelUpStartEvent.Raise();
         }
     }
-    //水位オーバー//TODO:水位オーバーへの遷移は、鋳型のクラスからイベントを送付して遷移する。
+    //水位オーバーへの遷移は、鋳型のクラスからイベントを送付して遷移する。
+    public void ReciveOverflowCasingEvent()
+    {
+        stateMachine.SendEvent((int)StateEventId.Miss);
+    }
+    //水位オーバー
     private class WaterLevelOverState : ImtStateMachine<GameFSM>.State
     {
         protected override void Enter()
         {
             Debug.Log("nowWaterLevelOverState");
-            //GameFSM.instance.WaterLevelUpStopEvent.Raise();
+            StateMachine.SendEvent((int)StateEventId.Finish);
+        }
+        protected override void Exit()
+        {
+           
         }
     }
 
@@ -153,8 +161,14 @@ public class GameFSM : MonoBehaviour
         protected override void Enter()
         {
             Debug.Log("nowScoreCalculationState");
+
             GameFSM.instance.Round++;  //ラウンドをカウントする。
             StateMachine.SendEvent((int)StateEventId.Finish);
+        }
+        protected override void Exit()
+        {
+            //得点出し終わったので、オブジェクトを削除する。
+            GameFSM.instance.CastingDeleteEvent.Raise();
         }
     }
     //総得点算出
@@ -163,6 +177,7 @@ public class GameFSM : MonoBehaviour
         protected override void Enter()
         {
             Debug.Log("nowTotalScoreCalculationState");
+
             StateMachine.SendEvent((int)StateEventId.Finish);
         }
     }
