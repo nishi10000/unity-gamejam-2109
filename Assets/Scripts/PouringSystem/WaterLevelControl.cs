@@ -145,8 +145,8 @@ public class WaterLevelControl : MonoBehaviour
         if(CastingParameter.CastingAlpha.Count > (CastingLower + ArrayForRaise)) { 
             Rate = CastingParameter.CastingAlpha[CastingLower + ArrayForRaise];
         }
-        //TODO:思ったより速度の変化が分かりずらい。
-        Rate = RateMagnification * Rate;
+        //福富さん案Rate算出。
+        Rate = RateMagnification * Mathf.Pow(Rate, 2f);
         //Debug.Log(Rate);
 
         UkiGameObject.transform.position += new Vector3(0, LevelBaseSpeed * Time.deltaTime * Rate, 0);

@@ -709,7 +709,7 @@ MonoBehaviour:
   CastingParameter: {fileID: 11400000, guid: 57659be9a4a4d564cb9010ae98cc8e12, type: 2}
   WaterLevelUpStart: 0
   LevelBaseSpeed: 1
-  RateMagnification: 1
+  RateMagnification: 3
 --- !u!4 &1282479001
 Transform:
   m_ObjectHideFlags: 0
