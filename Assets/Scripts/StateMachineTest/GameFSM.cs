@@ -13,8 +13,11 @@ public class GameFSM : MonoBehaviour
     public CastingEvent WaterLevelUpStartEvent = null;
     public CastingEvent WaterLevelUpStopEvent = null;
 
+    //鋳型を格納する変数。TODO:この数だけ、ラウンドが行われる。
     [SerializeField]
-    private List<GameObject> CastingGameObject = new List<GameObject>();
+    private List<GameObject> CastingGameObjects = new List<GameObject>();
+    public int Round = 0;  //ゲームのラウンドをカウントする。
+
     public enum StateEventId
     {
         Play,
@@ -77,7 +80,15 @@ public class GameFSM : MonoBehaviour
         protected override void Enter()
         {
             Debug.Log("nowMoldCountConfirmationState");
-            StateMachine.SendEvent((int)StateEventId.Finish);
+            if (GameFSM.instance.CastingGameObjects.Count > GameFSM.instance.Round)
+            {
+                StateMachine.SendEvent((int)StateEventId.Finish);
+                
+            }
+            else
+            {
+                StateMachine.SendEvent((int)StateEventId.Exit);
+            }
         }
 
     }
@@ -92,6 +103,14 @@ public class GameFSM : MonoBehaviour
         protected override void Enter()
         {
             Debug.Log("nowMoldEntryState");
+
+            //GameObject obj = (GameObject)Resources.Load("Cube");
+            GameObject obj = GameFSM.instance.CastingGameObjects[0];//TODO:ここをランダムにしても面白かも。
+
+            // プレハブを元にオブジェクトを生成する
+            GameObject instance = (GameObject)Instantiate(obj,
+                                                          new Vector3(5.0f, 0.0f, 0.0f),
+                                                          Quaternion.identity);
         }
     }
     //上昇水位を止める。
@@ -134,6 +153,7 @@ public class GameFSM : MonoBehaviour
         protected override void Enter()
         {
             Debug.Log("nowScoreCalculationState");
+            GameFSM.instance.Round++;  //ラウンドをカウントする。
             StateMachine.SendEvent((int)StateEventId.Finish);
         }
     }
