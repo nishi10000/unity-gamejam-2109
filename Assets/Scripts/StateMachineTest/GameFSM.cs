@@ -13,8 +13,8 @@ public class GameFSM : MonoBehaviour
     public CastingEvent WaterLevelUpStartEvent = null;
     public CastingEvent WaterLevelUpStopEvent = null;
 
-    //[SerializeField]
-    //public CastingEvent WaterLevelUpStartEvent => stateMachine.CastingEvent<UpWaterLevelState>();
+    [SerializeField]
+    private List<GameObject> CastingGameObject = new List<GameObject>();
     public enum StateEventId
     {
         Play,
