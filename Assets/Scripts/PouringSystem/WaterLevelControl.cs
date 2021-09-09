@@ -43,13 +43,11 @@ public class WaterLevelControl : MonoBehaviour
     public void WaterLevelUpStartEvent()
     {
         WaterLevelUpStart = true;
-        //Debug.Log("startEvent");
     }
     //Lisnerによって、下記関数を呼び出す事で、水位の上昇を止める。
     public void WaterLevelUpStopEvent()
     {
         WaterLevelUpStart = false;
-        //Debug.Log("EndEvent");
     }
 
 
