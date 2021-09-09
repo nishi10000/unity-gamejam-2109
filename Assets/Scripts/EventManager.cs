@@ -33,7 +33,7 @@ public class EventManager : MonoBehaviour
         }
         if (transform.gameObject.name == "1_EventManager")
         {
-            SceneManager.LoadScene("2_Score");   // シーン切り替え
+            SceneManager.LoadScene("2_Result");   // シーン切り替え
         }
         if (transform.gameObject.name == "2_EventManager")
         {
