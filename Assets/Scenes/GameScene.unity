@@ -578,6 +578,139 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1367774221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367774224}
+  - component: {fileID: 1367774223}
+  - component: {fileID: 1367774222}
+  - component: {fileID: 1367774225}
+  - component: {fileID: 1367774226}
+  m_Layer: 0
+  m_Name: ScoreController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1367774222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367774221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1268dd0cf0669bf4ebc50f7b6ad565b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 60069b7d08df85d409afd1624445ba87, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1367774223}
+        m_TargetAssemblyTypeName: ScoreCalculation, Assembly-CSharp
+        m_MethodName: AdditionalScoreCalculation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1367774223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367774221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0dc4bdedd743c743b19ee7042c6983e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CastingParameter: {fileID: 11400000, guid: 57659be9a4a4d564cb9010ae98cc8e12, type: 2}
+  score: {fileID: 11400000, guid: 9f15ad4512d51e54fb28ddf208fedee3, type: 2}
+  overScorePoint: 0
+--- !u!4 &1367774224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367774221}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1367774225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367774221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1268dd0cf0669bf4ebc50f7b6ad565b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 21b3899bc3fac674abbf53d54159c1c8, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1367774223}
+        m_TargetAssemblyTypeName: ScoreCalculation, Assembly-CSharp
+        m_MethodName: WaterLevelOverScoreCalculation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1367774226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367774221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1268dd0cf0669bf4ebc50f7b6ad565b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: bec3100b6e439e44a87d149c6e00fe78, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1367774223}
+        m_TargetAssemblyTypeName: ScoreCalculation, Assembly-CSharp
+        m_MethodName: TotalScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1528964715
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +976,9 @@ MonoBehaviour:
   WaterLevelUpStopEvent: {fileID: 11400000, guid: 4c92bdf6f53895e4194bdb74edb23032, type: 2}
   CastingEntryEvent: {fileID: 11400000, guid: de61a33e2dd831d48856b84c17f86e30, type: 2}
   CastingDeleteEvent: {fileID: 11400000, guid: 7c24886dcbd3d8f4198a50e6b79158a5, type: 2}
+  AddScoreCalculationEvent: {fileID: 11400000, guid: 60069b7d08df85d409afd1624445ba87, type: 2}
+  WaterLevelOverScoreEvent: {fileID: 11400000, guid: 21b3899bc3fac674abbf53d54159c1c8, type: 2}
+  TotalScoreEvent: {fileID: 11400000, guid: bec3100b6e439e44a87d149c6e00fe78, type: 2}
   CastingGameObjects:
   - {fileID: 2586978397937156366, guid: ffe21471dc260714b93a86d7b057fe67, type: 3}
   Round: 0

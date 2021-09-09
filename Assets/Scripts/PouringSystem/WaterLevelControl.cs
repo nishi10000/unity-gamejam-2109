@@ -111,6 +111,7 @@ public class WaterLevelControl : MonoBehaviour
     {
         //ターゲットの位置にUKIを置く。
         UkiGameObject.transform.position = TargetObject.transform.position;
+        CastingParameter.CastingWaterLevelPostion = TagetObjectLowerPos;
         UkiGameObject.transform.position = new Vector3(UkiGameObject.transform.position.x, TagetObjectLowerPos, UkiGameObject.transform.position.z);
     }
 
@@ -148,6 +149,7 @@ public class WaterLevelControl : MonoBehaviour
         //Debug.Log(Rate);
 
         UkiGameObject.transform.position += new Vector3(0, LevelBaseSpeed * Time.deltaTime * Rate, 0);
+        CastingParameter.CastingWaterLevelPostion = UkiGameObject.transform.position.y;
     }
 
     //Ukiが鋳型上面を超えたかどうかを確認する。

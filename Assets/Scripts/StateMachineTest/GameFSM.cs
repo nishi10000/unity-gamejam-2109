@@ -19,6 +19,14 @@ public class GameFSM : MonoBehaviour
     [SerializeField]
     private CastingEvent CastingDeleteEvent = null;
 
+    [SerializeField]
+    private CastingEvent AddScoreCalculationEvent = null;
+    [SerializeField]
+    private CastingEvent WaterLevelOverScoreEvent = null;
+    [SerializeField]
+    private CastingEvent TotalScoreEvent = null;
+
+
     //鋳型を格納する変数。TODO:この数だけ、ラウンドが行われる。//TODO:Scriptableオブジェクトに格納した方が使いやすそう。
     public List<GameObject> CastingGameObjects = new List<GameObject>();
     public int Round = 0;  //ゲームのラウンドをカウントする。
@@ -102,7 +110,7 @@ public class GameFSM : MonoBehaviour
     {
         stateMachine.SendEvent((int)StateEventId.Play);
     }
-    //鋳型出現//TODO:鋳型の出現依頼イベント送付する。
+    //鋳型出現//鋳型の出現依頼イベント送付する。
     private class MoldEntryState : ImtStateMachine<GameFSM>.State
     {
         protected override void Enter()
@@ -137,6 +145,7 @@ public class GameFSM : MonoBehaviour
         protected override void Enter()
         {
             Debug.Log("nowWaterLevelOverState");
+            GameFSM.instance.WaterLevelOverScoreEvent.Raise();
             StateMachine.SendEvent((int)StateEventId.Finish);
         }
         protected override void Exit()
@@ -152,6 +161,7 @@ public class GameFSM : MonoBehaviour
         {
             Debug.Log("nowStopWaterLevelUpwardState");
             GameFSM.instance.WaterLevelUpStopEvent.Raise();
+            GameFSM.instance.AddScoreCalculationEvent.Raise();
             StateMachine.SendEvent((int)StateEventId.Finish);
         }
     }
@@ -161,12 +171,12 @@ public class GameFSM : MonoBehaviour
         protected override void Enter()
         {
             Debug.Log("nowScoreCalculationState");
-
-            GameFSM.instance.Round++;  //ラウンドをカウントする。
+            
             StateMachine.SendEvent((int)StateEventId.Finish);
         }
         protected override void Exit()
         {
+            GameFSM.instance.Round++;  //ラウンドをカウントする。
             //得点出し終わったので、オブジェクトを削除する。
             GameFSM.instance.CastingDeleteEvent.Raise();
         }
@@ -177,7 +187,7 @@ public class GameFSM : MonoBehaviour
         protected override void Enter()
         {
             Debug.Log("nowTotalScoreCalculationState");
-
+            GameFSM.instance.TotalScoreEvent.Raise();
             StateMachine.SendEvent((int)StateEventId.Finish);
         }
     }

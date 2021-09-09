@@ -21,8 +21,17 @@ public class CastingParameter : ScriptableObject
     [SerializeField] float castingUpperPosition = 0;
     public float CastingUpperPosition { get; set; }
 
+    //水面がどのポジションなのか格納する。
+    [SerializeField] float castingWaterLevelPostion = 0;
+    public float CastingWaterLevelPostion { get; set; }
+
 
     void OnEnable()
+    {
+        Init();
+    }
+
+    public void OnAfterDeserialize()
     {
         Init();
     }
@@ -37,7 +46,6 @@ public class CastingParameter : ScriptableObject
         CastingAlpha = castingAlpha;
         CastingLowerPosition = castingLowerPosition;
         CastingUpperPosition = castingUpperPosition;
-
-
+        CastingWaterLevelPostion = castingWaterLevelPostion;
     }
 }
