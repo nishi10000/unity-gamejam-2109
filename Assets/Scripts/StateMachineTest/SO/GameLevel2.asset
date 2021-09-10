@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba4a0d52fd3a12e41818953aa7261f0f, type: 3}
-  m_Name: GameLevelSetting
+  m_Script: {fileID: 11500000, guid: d63324b8c1ee7594fa8a11eab8ff9baa, type: 3}
+  m_Name: GameLevel2
   m_EditorClassIdentifier: 
-  gameLevels:
-  - {fileID: 11400000, guid: 2403309af2445824ab616b911441a752, type: 2}
-  - {fileID: 11400000, guid: 8afcab53a615d57439f67ac277aeb75a, type: 2}
-  totalRound: 4
-  nowLevel: 0
+  castingObject: {fileID: 2586978397937156366, guid: ffe21471dc260714b93a86d7b057fe67, type: 3}
+  name: "\u3064\u307C"
+  baseScore: 999

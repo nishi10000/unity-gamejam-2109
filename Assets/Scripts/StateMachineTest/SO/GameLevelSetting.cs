@@ -13,6 +13,17 @@ public class GameLevelSetting : ScriptableObject
     private List<GameLevel> gameLevels = null;
     public List<GameLevel> GameLevels { get; set; }
 
+    //ラウンド数を決める。
+    [SerializeField]
+    private float totalRound = 1;
+    public float TotalRound { get; set; }
+
+    //選択中のレベルを格納する。
+    [SerializeField]
+    private int   nowLevel = 0;
+    public int NowLevel { get; set; }
+
+
     void OnEnable()
     {
         Init();
@@ -30,5 +41,7 @@ public class GameLevelSetting : ScriptableObject
     void Init()
     {
         GameLevels = new List<GameLevel>(gameLevels);
+        TotalRound = totalRound;
+        NowLevel = nowLevel;
     }
 }

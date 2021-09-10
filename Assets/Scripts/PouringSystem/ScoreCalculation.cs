@@ -17,9 +17,6 @@ public class ScoreCalculation : MonoBehaviour
     private float overScorePoint = 0;
 
     [SerializeField]
-    GameLevel gameLevel = null;
-
-    [SerializeField]
     GameLevelSetting gameLevelSetting = null;
 
     //なぜかScriptableObjectがリセットされない為ここでリセットしてみる。
@@ -38,7 +35,7 @@ public class ScoreCalculation : MonoBehaviour
         float FillingRate = FillingDepth / CastingDepth;
 
         //今のラウンドのGameLevelを持ってくる。
-        float Score = gameLevelSetting.GameLevels[GameFSM.instance.Round].BaseScore * FillingRate;
+        float Score = gameLevelSetting.GameLevels[gameLevelSetting.NowLevel].BaseScore * FillingRate;
         Score = (float)Math.Round(Score, 1);
         Debug.Log("点数は"+Score+"点です");
         score.RoundScore.Add(Score);

@@ -355,6 +355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9184c3bac58ff4b8b3ca312f667b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameLevelSetting: {fileID: 11400000, guid: ef9543d13ac7f844bb877c97288d18b6, type: 2}
+  MoldExitEvent: {fileID: 11400000, guid: 4864adaf23d0408469926b1a4dc14253, type: 2}
 --- !u!4 &432735552
 Transform:
   m_ObjectHideFlags: 0
@@ -632,7 +634,6 @@ MonoBehaviour:
   CastingParameter: {fileID: 11400000, guid: 57659be9a4a4d564cb9010ae98cc8e12, type: 2}
   score: {fileID: 11400000, guid: 9f15ad4512d51e54fb28ddf208fedee3, type: 2}
   overScorePoint: 0
-  gameLevel: {fileID: 11400000, guid: 2403309af2445824ab616b911441a752, type: 2}
   gameLevelSetting: {fileID: 11400000, guid: ef9543d13ac7f844bb877c97288d18b6, type: 2}
 --- !u!4 &1367774224
 Transform:
@@ -946,6 +947,7 @@ GameObject:
   - component: {fileID: 2125895276}
   - component: {fileID: 2125895277}
   - component: {fileID: 2125895278}
+  - component: {fileID: 2125895279}
   m_Layer: 0
   m_Name: GameFSM
   m_TagString: Untagged
@@ -973,9 +975,8 @@ MonoBehaviour:
   WaterLevelOverScoreEvent: {fileID: 11400000, guid: 21b3899bc3fac674abbf53d54159c1c8, type: 2}
   TotalScoreEvent: {fileID: 11400000, guid: bec3100b6e439e44a87d149c6e00fe78, type: 2}
   GameEndEvent: {fileID: 11400000, guid: 2121b9e8d24bafc4e979ac626544a476, type: 2}
-  CastingGameObjects:
-  - {fileID: 2586978397937156366, guid: ffe21471dc260714b93a86d7b057fe67, type: 3}
-  Round: 0
+  gameLevelSetting: {fileID: 11400000, guid: ef9543d13ac7f844bb877c97288d18b6, type: 2}
+  NowRound: 0
 --- !u!4 &2125895275
 Transform:
   m_ObjectHideFlags: 0
@@ -1065,6 +1066,34 @@ MonoBehaviour:
       - m_Target: {fileID: 2125895274}
         m_TargetAssemblyTypeName: GameFSM, Assembly-CSharp
         m_MethodName: ReciveOverflowCasingEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2125895279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125895273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1268dd0cf0669bf4ebc50f7b6ad565b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 4864adaf23d0408469926b1a4dc14253, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2125895274}
+        m_TargetAssemblyTypeName: GameFSM, Assembly-CSharp
+        m_MethodName: ReciveMoldExitEvent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -26,13 +26,20 @@ public class GameFSM : MonoBehaviour
     [SerializeField]
     private CastingEvent TotalScoreEvent = null;
 
+    //シーンマネージャーにメインゲームが終わったことを伝える。
     [SerializeField]
     private Event GameEndEvent = null;
 
 
     //鋳型を格納する変数。TODO:この数だけ、ラウンドが行われる。//TODO:Scriptableオブジェクトに格納した方が使いやすそう。
-    public List<GameObject> CastingGameObjects = new List<GameObject>();
-    public int Round = 0;  //ゲームのラウンドをカウントする。
+    //public List<GameObject> CastingGameObjects = new List<GameObject>();
+
+    //ラウンド数を格納する。
+    [SerializeField]
+    private GameLevelSetting gameLevelSetting = null;
+
+    public int NowRound = 0;  //ゲームのラウンドをカウントする。
+    
 
     public enum StateEventId
     {
@@ -56,7 +63,8 @@ public class GameFSM : MonoBehaviour
         stateMachine.AddTransition<UpWaterLevelState, StopWaterLevelUpwardState>((int)StateEventId.Stop);
         stateMachine.AddTransition<WaterLevelOverState, ScoreCalculationState>((int)StateEventId.Finish);
         stateMachine.AddTransition<StopWaterLevelUpwardState, ScoreCalculationState>((int)StateEventId.Finish); 
-        stateMachine.AddTransition<ScoreCalculationState, TotalScoreCalculationState>((int)StateEventId.Finish);
+        stateMachine.AddTransition<ScoreCalculationState, MoldExit>((int)StateEventId.Finish);
+        stateMachine.AddTransition<MoldExit, TotalScoreCalculationState>((int)StateEventId.Finish);
         stateMachine.AddTransition<TotalScoreCalculationState, MoldCountConfirmationState>((int)StateEventId.Finish);
         stateMachine.AddTransition<MoldCountConfirmationState, GameEndState>((int)StateEventId.Exit);
 
@@ -96,7 +104,7 @@ public class GameFSM : MonoBehaviour
         protected override void Enter()
         {
             Debug.Log("nowMoldCountConfirmationState");
-            if (GameFSM.instance.CastingGameObjects.Count > GameFSM.instance.Round)
+            if (GameFSM.instance.gameLevelSetting.TotalRound > GameFSM.instance.NowRound)
             {
                 StateMachine.SendEvent((int)StateEventId.Finish);
                 
@@ -179,9 +187,27 @@ public class GameFSM : MonoBehaviour
         }
         protected override void Exit()
         {
-            GameFSM.instance.Round++;  //ラウンドをカウントする。
+            GameFSM.instance.NowRound++;  //ラウンドをカウントする。
+           
+        }
+    }
+    //鋳物を削除したので、次のステートに移る。
+    public void ReciveMoldExitEvent()
+    {
+        stateMachine.SendEvent((int)StateEventId.Finish);
+    }
+    //鋳物をはける
+    private class MoldExit : ImtStateMachine<GameFSM>.State
+    {
+        protected override void Enter()
+        {
+            Debug.Log("nowMoldExit");
             //得点出し終わったので、オブジェクトを削除する。
             GameFSM.instance.CastingDeleteEvent.Raise();
+        }
+        protected override void Exit()
+        {
+
         }
     }
     //総得点算出
