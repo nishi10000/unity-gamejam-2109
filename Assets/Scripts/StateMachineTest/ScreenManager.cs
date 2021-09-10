@@ -77,13 +77,13 @@ public class ScreenManager : MonoBehaviour
         protected override void Enter()
         {
             // タイトルシーンを加算する
-            SceneManager.LoadScene("1_Main", LoadSceneMode.Additive);
+            SceneManager.LoadScene("GameScene", LoadSceneMode.Additive);
             Debug.Log("MainStateEnter");
         }
         protected override void Exit()
         {
             // タイトルシーンを減算する
-            SceneManager.UnloadSceneAsync("1_Main");
+            SceneManager.UnloadSceneAsync("GameScene");
             Debug.Log("MainStateExit");
         }
     }
