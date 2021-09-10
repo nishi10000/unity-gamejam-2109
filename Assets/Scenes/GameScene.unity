@@ -972,6 +972,7 @@ MonoBehaviour:
   AddScoreCalculationEvent: {fileID: 11400000, guid: 60069b7d08df85d409afd1624445ba87, type: 2}
   WaterLevelOverScoreEvent: {fileID: 11400000, guid: 21b3899bc3fac674abbf53d54159c1c8, type: 2}
   TotalScoreEvent: {fileID: 11400000, guid: bec3100b6e439e44a87d149c6e00fe78, type: 2}
+  GameEndEvent: {fileID: 11400000, guid: 2121b9e8d24bafc4e979ac626544a476, type: 2}
   CastingGameObjects:
   - {fileID: 2586978397937156366, guid: ffe21471dc260714b93a86d7b057fe67, type: 3}
   Round: 0

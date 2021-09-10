@@ -26,6 +26,9 @@ public class GameFSM : MonoBehaviour
     [SerializeField]
     private CastingEvent TotalScoreEvent = null;
 
+    [SerializeField]
+    private Event GameEndEvent = null;
+
 
     //鋳型を格納する変数。TODO:この数だけ、ラウンドが行われる。//TODO:Scriptableオブジェクトに格納した方が使いやすそう。
     public List<GameObject> CastingGameObjects = new List<GameObject>();
@@ -197,8 +200,7 @@ public class GameFSM : MonoBehaviour
         protected override void Enter()
         {
             Debug.Log("nowGameEndState");
-            //TODO:ゲーム終了イベントをRaiseする。
-
+            GameFSM.instance.GameEndEvent.Raise();
         }
     }
 }
