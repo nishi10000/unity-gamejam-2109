@@ -16,6 +16,12 @@ public class ScoreCalculation : MonoBehaviour
     [SerializeField]
     private float overScorePoint = 0;
 
+    //なぜかScriptableObjectがリセットされない為ここでリセットしてみる。
+    private void Start()
+    {
+        score.RoundScore = new List<float>();
+    }
+
     //Ukiと(CastingParameter.CastingUpperPosition-CastingParameter.CastinglowerPosition)の差異から何パーセントの位置に来ているか確認する。
     //それをScriptableオブジェクトに格納する。
     public void AdditionalScoreCalculation()
@@ -40,13 +46,9 @@ public class ScoreCalculation : MonoBehaviour
     //合計点を求める。
     public void TotalScore()
     {
-        List<int> lst3 = (new List<float>(score.RoundScore)).ConvertAll(FloatToInt10Multiple);//Sumを使用する為に10倍してintに変換
-        int a =lst3.Sum();  
-        float b = a / 10f; 
-        Debug.Log("合計点数は" + b + "点です");
-    }
-    private static int FloatToInt10Multiple(float i)
-    {
-        return (int)(i * 10);
+        float? sum = score.RoundScore.Sum();
+        score.TotalScore = (float)sum;
+
+        Debug.Log("合計点数は" + sum + "点です");
     }
 }
