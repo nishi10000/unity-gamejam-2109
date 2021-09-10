@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TapEventListener : MonoBehaviour
+public class EventListener : MonoBehaviour
 {
-    public TapEvent TapEvent;
+    public Event Event;
     public UnityEvent Response;
 
     private void OnEnable()
-    { TapEvent.RegisterListener(this); }
+    { Event.RegisterListener(this); }
 
     private void OnDisable()
-    { TapEvent.UnregisterListener(this); }
+    { Event.UnregisterListener(this); }
 
     public void OnEventRaised()
     { Response.Invoke(); }

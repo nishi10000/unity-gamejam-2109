@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29c549b9b300f7e488f88f1eeb140da6, type: 3}
-  m_Name: TapEvent
+  m_Script: {fileID: 11500000, guid: f8c526509dd6d844e986946b49feebaa, type: 3}
+  m_Name: GameEndEvent
   m_EditorClassIdentifier: 
