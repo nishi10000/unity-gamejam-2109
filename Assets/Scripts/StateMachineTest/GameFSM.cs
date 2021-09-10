@@ -25,6 +25,9 @@ public class GameFSM : MonoBehaviour
     private CastingEvent WaterLevelOverScoreEvent = null;
     [SerializeField]
     private CastingEvent TotalScoreEvent = null;
+    [SerializeField]
+    private CastingEvent NowScoreViewEvent = null;
+
 
     //シーンマネージャーにメインゲームが終わったことを伝える。
     [SerializeField]
@@ -182,7 +185,7 @@ public class GameFSM : MonoBehaviour
         protected override void Enter()
         {
             Debug.Log("nowScoreCalculationState");
-            
+            GameFSM.instance.NowScoreViewEvent.Raise();
             StateMachine.SendEvent((int)StateEventId.Finish);
         }
         protected override void Exit()
@@ -202,6 +205,7 @@ public class GameFSM : MonoBehaviour
         protected override void Enter()
         {
             Debug.Log("nowMoldExit");
+
             //得点出し終わったので、オブジェクトを削除する。
             GameFSM.instance.CastingDeleteEvent.Raise();
         }
