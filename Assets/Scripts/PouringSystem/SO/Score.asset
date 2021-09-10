@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9a3a8f165f98d4b8d9b90079ca203f, type: 3}
   m_Name: Score
   m_EditorClassIdentifier: 
-  roundScore:
-  - 25
-  - 16
+  roundScore: []
   totalScore: 0

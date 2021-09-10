@@ -198,6 +198,7 @@ public class GameFSM : MonoBehaviour
         {
             Debug.Log("nowGameEndState");
             //TODO:ゲーム終了イベントをRaiseする。
+
         }
     }
 }
