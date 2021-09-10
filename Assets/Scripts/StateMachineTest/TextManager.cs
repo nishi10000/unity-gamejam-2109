@@ -15,7 +15,7 @@ public class TextManager : MonoBehaviour
     public void NowScoreView()
     {
         //最後のスコアを表示する。
-        NowScoreText.text = score.RoundScore[score.RoundScore.Count - 1].ToString();
+        NowScoreText.text = "今の鋳物の得点は"+score.RoundScore[score.RoundScore.Count - 1].ToString()+"だよ！";
     }
    
 }
