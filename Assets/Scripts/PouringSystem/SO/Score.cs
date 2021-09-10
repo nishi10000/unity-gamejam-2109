@@ -35,7 +35,7 @@ public class Score : ScriptableObject
 
     void Init()
     {
-        RoundScore = roundScore;
+        RoundScore = new List<float>(roundScore);
         TotalScore = totalScore;
     }
 }

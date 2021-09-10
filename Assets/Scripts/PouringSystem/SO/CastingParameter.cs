@@ -43,7 +43,9 @@ public class CastingParameter : ScriptableObject
 
     void Init()
     {
-        CastingAlpha = castingAlpha;
+        CastingAlpha = new List<float>(castingAlpha);
+
+        //CastingAlpha = castingAlpha;
         CastingLowerPosition = castingLowerPosition;
         CastingUpperPosition = castingUpperPosition;
         CastingWaterLevelPostion = castingWaterLevelPostion;

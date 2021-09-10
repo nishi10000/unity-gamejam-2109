@@ -641,6 +641,8 @@ MonoBehaviour:
   CastingParameter: {fileID: 11400000, guid: 57659be9a4a4d564cb9010ae98cc8e12, type: 2}
   score: {fileID: 11400000, guid: 9f15ad4512d51e54fb28ddf208fedee3, type: 2}
   overScorePoint: 0
+  gameLevel: {fileID: 11400000, guid: 2403309af2445824ab616b911441a752, type: 2}
+  gameLevelSetting: {fileID: 11400000, guid: ef9543d13ac7f844bb877c97288d18b6, type: 2}
 --- !u!4 &1367774224
 Transform:
   m_ObjectHideFlags: 0
