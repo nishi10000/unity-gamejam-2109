@@ -60,13 +60,13 @@ public class ScreenManager : MonoBehaviour
         protected override void Enter()
         {
             // タイトルシーンを加算する
-            SceneManager.LoadScene("0_Title", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Title", LoadSceneMode.Additive);
             Debug.Log("TitleStateEnter");
         }
         protected override void Exit()
         {
             // タイトルシーンを減算する
-            SceneManager.UnloadSceneAsync("0_Title");
+            SceneManager.UnloadSceneAsync("Title");
             Debug.Log("TitleStateExit");
         }
     }
@@ -93,13 +93,13 @@ public class ScreenManager : MonoBehaviour
         protected override void Enter()
         {
             // タイトルシーンを加算する
-            SceneManager.LoadScene("2_Result", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Result", LoadSceneMode.Additive);
             Debug.Log("ResultStateEnter");
         }
         protected override void Exit()
         {
             // タイトルシーンを減算する
-            SceneManager.UnloadSceneAsync("2_Result");
+            SceneManager.UnloadSceneAsync("Result");
             Debug.Log("ResultStateExit");
         }
     }
